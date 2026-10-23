@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+build/
+dist/
+*.spec
+.cache/
+.python/
+.python-bin/
+data/
+.ruff_cache/

@@ -1,0 +1,20 @@
+services:
+  mirror:
+    image: nginx:1.28-alpine
+    restart: unless-stopped
+    ports:
+      - "${MIRROR_BIND:-127.0.0.1}:${MIRROR_PORT:-8080}:8080"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    read_only: true
+    tmpfs:
+      - /var/cache/nginx
+      - /var/run
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
